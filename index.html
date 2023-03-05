@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Displaying URL Parameters</title>
+    
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Add custom CSS styles -->
+    <style>
+      body,html{
+			height: 100%;
+			margin: 0;
+			background: #7F7FD5;
+	       background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+	        background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+		  }
+      #simpleForm {
+        max-width: 500px;
+        margin: auto;
+        background-color: #FFFFFF;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px #888888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Displaying URL Parameters</h1>
+      <p>
+        The values of the two parameters are:
+        <span id="title"></span> and
+        <span id="message"></span>.
+      </p>
+
+      <form id="simpleForm" method="GET" action="">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" name="title"></input>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea class="form-control" id="message" name="message"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <!-- Add Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const title = urlParams.get('title');
+        const message = urlParams.get('message');
+        document.getElementById("title").innerHTML = title;
+        document.getElementById("message").innerHTML = message;
+        const form = document.getElementById("simpleForm");
+          if (title) {
+            form.querySelector('[name="title"]').value = title;
+          }
+          if (message) {
+            form.querySelector('[name="message"]').value = message;
+          }
+      }
+    </script>
+  </body>
+</html>
